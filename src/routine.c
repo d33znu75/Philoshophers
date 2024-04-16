@@ -6,7 +6,7 @@
 /*   By: rhmimchi <rhmimchi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/25 18:08:07 by rhmimchi          #+#    #+#             */
-/*   Updated: 2024/03/31 02:52:48 by rhmimchi         ###   ########.fr       */
+/*   Updated: 2024/04/16 01:08:45 by rhmimchi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	*check_death(void *arg)
 		{
 			pthread_mutex_lock(&philo->data->mutex_time);
 			if (get_time() - (philo + i)->time_last_eat > \
-				(size_t) philo->data->time_to_die)
+				(size_t) philo->data->time_to_die) // !!
 			{
 				philo_dead(philo, i);
 				return (pthread_mutex_unlock(&philo->data->mutex_time), NULL);
@@ -76,8 +76,7 @@ void	philo_sleep(t_philo *philo)
 		pthread_mutex_unlock(&philo->data->mutex_stop);
 		return ;
 	}
-	pthread_mutex_unlock(&philo->data->mutex_stop);
-	printing("is sleeping", philo);
+	pthread_mutex_unlock(&philo->data->mutex_stop); // !!
 	ft_usleep(philo->data->time_to_sleep);
 }
 
@@ -133,7 +132,7 @@ void	philo_eat(t_philo *philo)
 
 void	routine2(t_philo *philo)
 {
-	while (1)
+	while (69)
 	{
 		pthread_mutex_lock(&philo->data->mutex_stop);
 		if (philo->data->stop)
@@ -158,25 +157,25 @@ void	*routine(void *arg)
 	t_philo	*philo;
 
 	philo = (t_philo *)arg;
-	pthread_mutex_lock(&philo->data->mutex_time);
-	philo->time_last_eat = philo->data->start_time;
-	pthread_mutex_unlock(&philo->data->mutex_time);
-	sleep_start(philo);
-	if (philo->data->num_of_philo == 1)
+	pthread_mutex_lock(&philo->data->mutex_time); // lock time mutex to get the time of the last eat
+	philo->time_last_eat = philo->data->start_time; // set the time of the last eat to the start time
+	pthread_mutex_unlock(&philo->data->mutex_time); // unlock time mutex after setting the time of the last eat to the start time
+	sleep_start(philo); // sleep for the time of the last eat to start the time of the last eat from the start time 
+	if (philo->data->num_of_philo == 1) // if there is only one philosopher
 	{
-		printing("is thinking\n", philo);
-		ft_usleep(philo->data->time_to_die * 2);
+		printing("is thinking\n", philo); // print that the philosopher is thinking
+		ft_usleep(philo->data->time_to_die * 2); // sleep for the time to die * 2 to make the philosopher die
 	}
-	else if (philo->id % 2 == 1)
+	else if (philo->id % 2 == 1) // if the philosopher id is odd 
 	{
-		printing("is thinking", philo);
-		ft_usleep(philo->data->time_to_eat);
+		printing("is thinking", philo); // print that the philosopher is thinking 
+		ft_usleep(philo->data->time_to_eat); // sleep for the time to eat to make the philosopher eat
 	}
-	else if (philo->id == philo->data->num_of_philo - 1)
+	else if (philo->id == philo->data->num_of_philo - 1) // if the philosopher id is the last one 
 	{
-		printing("is thinking", philo);
-		ft_usleep(philo->data->time_to_eat * 2);
+		printing("is thinking", philo); // print that the philosopher is thinking
+		ft_usleep(philo->data->time_to_eat * 2); // sleep for the time to eat * 2 to make the philosopher eat
 	}
-	routine2(philo);
+	routine2(philo); // call the routine2 function to make the philosopher eat, sleep and think
 	return (NULL);
 }

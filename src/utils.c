@@ -6,7 +6,7 @@
 /*   By: rhmimchi <rhmimchi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 20:17:07 by rhmimchi          #+#    #+#             */
-/*   Updated: 2024/03/31 02:35:43 by rhmimchi         ###   ########.fr       */
+/*   Updated: 2024/04/15 20:21:54 by rhmimchi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,7 @@ int	ft_strcmp(const char *s1, const char *s2)
 void	sleep_start(t_philo *philo)
 {
 	while (get_time() < philo->data->start_time)
-		ft_usleep(1);
+		ft_usleep(10);
 }
 
 void	printing(char *str, t_philo *philo)
