@@ -6,7 +6,7 @@
 /*   By: rhmimchi <rhmimchi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 20:02:12 by rhmimchi          #+#    #+#             */
-/*   Updated: 2024/04/15 20:24:14 by rhmimchi         ###   ########.fr       */
+/*   Updated: 2024/05/21 18:06:25 by rhmimchi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,9 +57,9 @@ int	init_2(t_data *data)
 	data->num_philo_full = 0;
 	data->stop = 0;
 	data->start_time = get_time() + (10 * data->num_of_philo);
-	data->time_to_think = data->time_to_eat - data->time_to_sleep;	// !!
-	if (data->num_of_philo % 2 != 0) 								// !!
-		data->time_to_think += data->time_to_eat;					// !!
+	data->time_to_think = data->time_to_eat - data->time_to_sleep;
+	if (data->num_of_philo % 2 != 0)
+		data->time_to_think += data->time_to_eat;
 	return (0);
 }
 

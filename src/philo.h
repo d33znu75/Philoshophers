@@ -6,7 +6,7 @@
 /*   By: rhmimchi <rhmimchi@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/02/16 19:48:29 by rhmimchi          #+#    #+#             */
-/*   Updated: 2024/03/29 11:04:10 by rhmimchi         ###   ########.fr       */
+/*   Updated: 2024/05/21 18:22:08 by rhmimchi         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ size_t	get_time(void);
 void	ft_usleep(size_t time);
 int		ft_strcmp(const char *s1, const char *s2);
 void	sleep_start(t_philo *philo);
+int		allocations(t_data *data, t_philo **philo);
 
 // routine functions
 void	printing(char *str, t_philo *philo);
@@ -62,5 +63,7 @@ void	drop_forks(t_philo *philo);
 void	eat(t_philo *philo);
 void	*check_death(void *arg);
 void	*routine(void *arg);
+void	is_slepping(t_philo *philo);
+void	is_thinking(t_philo *philo);
 
 #endif
